@@ -1,0 +1,74 @@
+## Generated mta.yaml based on template version 0.4.0
+## appName = ordem-venda
+## language=nodejs; multitenant=false
+## approuter=
+_schema-version: '3.1'
+ID: ordem-venda
+version: 1.0.0
+description: "Servico Ordem de vendas"
+parameters:
+  enable-parallel-deployments: true
+   
+build-parameters:
+  before-all:
+   - builder: custom
+     commands:
+      - npm ci
+      - npx -p @sap/cds-dk cds build --production
+
+modules:
+ # --------------------- SERVER MODULE ------------------------
+ - name: ordem-venda-srv
+ # ------------------------------------------------------------
+   type: nodejs
+   path: gen/srv
+   parameters:
+     buildpack: nodejs_buildpack
+   build-parameters:
+     builder: npm-ci
+   requires:
+    # Resources extracted from CAP configuration
+    - name: ordem-venda-auth
+    - name: ordem-venda-db
+   provides:
+    - name: srv-api      # required by consumers of CAP services (e.g. approuter)
+      properties:
+        srv-url: ${default-url}
+
+ # -------------------- SIDECAR MODULE ------------------------
+ - name: ordem-venda-db-deployer
+ # ------------------------------------------------------------
+   type: hdb
+   path: gen/db  
+   parameters:
+     buildpack: nodejs_buildpack
+   requires:
+    # 'hana' and 'xsuaa' resources extracted from CAP configuration
+    - name: ordem-venda-auth
+    - name: ordem-venda-db
+
+
+resources:
+ # services extracted from CAP configuration
+ # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
+# ------------------------------------------------------------
+ - name: ordem-venda-auth
+# ------------------------------------------------------------
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service: xsuaa
+     service-plan: application  
+     config:
+       xsappname: ordem-venda-${space}    #  name + space dependency
+       tenant-mode: dedicated
+# ------------------------------------------------------------
+ - name: ordem-venda-db
+# ------------------------------------------------------------
+   type: com.sap.xs.hdi-container
+   parameters:
+     service: hana  # or 'hanatrial' on trial landscapes
+     service-plan: hdi-shared
+   properties:
+     hdi-service-name: ${service-name}
+
+
