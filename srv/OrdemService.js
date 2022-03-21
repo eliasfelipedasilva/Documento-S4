@@ -7,14 +7,21 @@ class OrdemVenda extends cds.ApplicationService {
         const regrasOrdens = new RegrasOrdens(req);
         console.log("[CUSTOM] - service Ordem");
         this.on('IniciaSchedulerEtapa',this.IniciaSchedulerEtapa )
-        // this.before('POST', 'OrdemVenda', regrasOrdens.start.bind(regrasOrdens));
+        this.before('UPDATE', 'ManagerOrdemVenda', this.configManagerOrdemVenda);
+        this.before('CREATE', 'ManagerOrdemVenda', this.configManagerOrdemVenda);
         await super.init();
     }
 
-    async IniciaSchedulerEtapa(req){
-      let task =   Scheduler.IniciarScheduler(req.data);
-      return task;
+
+    async configManagerOrdemVenda(req){
+      if(req.data.status_scheduler == "ligado"){
+        req.data.msg_status_scheduler = await Scheduler.IniciarScheduler(req.data)
+      }
+      console.log(req.data.msg_status_scheduler, "AQUI")
     }
+
+
+
 }
 
 module.exports = OrdemVenda;

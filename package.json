@@ -9,7 +9,7 @@
     "@sap/cds": "^5",
     "express": "^4",
     "hana": "^0.0.2",
-    "node-cron": "^3.0.0",
+    "node-schedule": "^2.1.0",
     "passport": "^0.5.2"
   },
   "devDependencies": {

@@ -1,0 +1,2 @@
+ID;pais;numero_pedido;tipo_ordem;etapa_ID;status;numero_retorno;reprocessamento;createdAt;modifiedAt;createdBy;modifiedBy
+cc9a99aa-ef2c-4354-a350-80d5b1c92bde;BR;1;normal;1abafd34-0c3a-4211-9694-2cc77c0dd7ca;A;;;2022-03-21T20:55:05.105Z;2022-03-21T20:55:05.105Z;ELias;Elias

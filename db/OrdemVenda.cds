@@ -19,10 +19,14 @@ entity EtapaOrdemVenda :cuid, managed {
 }
 
 entity ManagerOrdemVenda : cuid, managed {
-    pais              : Pais;
-    etapa             : Association to one EtapaOrdemVenda;
-    qtd_a_processar   : Integer;
-    limite_reproc     : Integer;
+    pais                  : Pais;
+    etapa                 : Association to one EtapaOrdemVenda;
+    qtd_a_processar       : Integer;
+    limite_reproc         : Integer;
+    msg_status_scheduler  : String;
+    status_scheduler      : StatusScheduler;
+    cronExpression        : String;
+
 }
 
 type Pais : String enum {
@@ -36,6 +40,10 @@ type Status : String enum {
     P;
     E;
     S;
+}
+type StatusScheduler : String enum {
+    ligado;
+    desligado;
 }
 type TipoOrdem : String enum {
     normal;
