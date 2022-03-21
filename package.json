@@ -9,6 +9,7 @@
     "@sap/cds": "^5",
     "express": "^4",
     "hana": "^0.0.2",
+    "node-cron": "^3.0.0",
     "passport": "^0.5.2"
   },
   "devDependencies": {
@@ -22,7 +23,9 @@
       "db": {
         "kind": "sql"
       },
-      "auth": { "kind": "xsuaa" }
+      "auth": {
+        "kind": "xsuaa"
+      }
     },
     "hana": {
       "deploy-format": "hdbtable"

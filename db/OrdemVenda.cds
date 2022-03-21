@@ -9,7 +9,7 @@ entity OrdemVenda : cuid , managed{
     tipo_ordem        : TipoOrdem;
     etapa             : Association to one EtapaOrdemVenda;
     reprocessamento   : Integer;
-    status            : Status;
+    status            : Status default 'A';
 }
 
 entity EtapaOrdemVenda :cuid, managed {
