@@ -26,12 +26,17 @@ module.exports ={
         console.log(error);
         return "Erro ao iniciar scheduler. Manager ID : "+ data.ID;
     }
-
-    
     if(task){
         return "Start Scheduler para etapa"
     }
-
-}
+  },
+  DesligarScheduler(data) {
+    let current_job = schedule.scheduledJobs[data.ID];
+    let msg;
+    if(current_job){
+      current_job.cancel();
+    }
+    return "Sheduler desligado. Manager ID : "+ data.ID;
+  }
     
 }

@@ -16,8 +16,9 @@ class OrdemVenda extends cds.ApplicationService {
     async configManagerOrdemVenda(req){
       if(req.data.status_scheduler == "ligado"){
         req.data.msg_status_scheduler = await Scheduler.IniciarScheduler(req.data)
+      }else if(req.data.status_scheduler == "desligado"){
+        req.data.msg_status_scheduler = await Scheduler.DesligarScheduler(req.data)
       }
-      console.log(req.data.msg_status_scheduler, "AQUI")
     }
 
 
