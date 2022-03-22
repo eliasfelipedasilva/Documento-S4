@@ -7,6 +7,17 @@ service OrdemService {
    entity EtapaOrdemVenda as projection on my.EtapaOrdemVenda;
    entity ManagerOrdemVenda as projection on my.ManagerOrdemVenda;
 
+@cds.redirection.target : false
+  view qtdPorStatus as 
+    select from my.OrdemVenda distinct {
+      COUNT(
+        *
+      )as qtdPorStatus : Integer,
+      status,
+    }
+    group by
+      status;
+
    action IniciaSchedulerEtapa(
       cronExpression: String,
       etapa : String,
