@@ -1,18 +1,20 @@
 let schedule = require('node-schedule');
-let ProcessamentoEtapasOrdemVenda = require('./ProcessamentoOrdem')
+let ProcessamentoEtapasDocumento= require('./ProcessamentoDocumento')
 
 let task;
 module.exports ={
   IniciarScheduler(data){
+    console.log(data)
     try {
-      let cProcessamentoEtapasOrdemVenda = new ProcessamentoEtapasOrdemVenda(data.etapa_ID,data.qtd_a_processar, data.limite_reproc);
+      let cProcessamentoEtapasDocumento = new ProcessamentoEtapasDocumento(data.etapa_ID,data.qtd_a_processar, data.limite_reproc);
       let current_job = schedule.scheduledJobs[data.ID];
       let msg;
       if(current_job){
         current_job.cancel();
       }
+      
       task =  schedule.scheduleJob(data.ID,data.cronExpression, function() {
-            cProcessamentoEtapasOrdemVenda.start();
+            cProcessamentoEtapasDocumento.start();
           });
       if(task && !current_job){
         return "Scheduler iniciado. Manager ID : "+ data.ID;

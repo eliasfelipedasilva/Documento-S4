@@ -1,6 +1,6 @@
 const cds = require("@sap/cds");
 
-class RegrasOrdensBR {
+class RegrasDocumentoBR {
   constructor() {}
 
   async factory(req) {
@@ -12,11 +12,11 @@ class RegrasOrdensBR {
     };
   }
   async regra1(req) {
-    return "Regra1 CO";
+    return "Regra1 BR";
   }
   async regra2(req) {
-    return " Regra2 CO";
+    return " Regra2 BR";
   }
 }
 
-module.exports = RegrasOrdensBR;
+module.exports = RegrasDocumentoBR;

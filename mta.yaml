@@ -1,11 +1,11 @@
 ## Generated mta.yaml based on template version 0.4.0
-## appName = ordem-venda
+## appName = documento-s4
 ## language=nodejs; multitenant=false
 ## approuter=
 _schema-version: '3.1'
-ID: ordem-venda
+ID: documento-s4
 version: 1.0.0
-description: "Servico Ordem de vendas"
+description: "Servico Documentos S4"
 parameters:
   enable-parallel-deployments: true
    
@@ -18,7 +18,7 @@ build-parameters:
 
 modules:
  # --------------------- SERVER MODULE ------------------------
- - name: ordem-venda-srv
+ - name: documento-s4-srv
  # ------------------------------------------------------------
    type: nodejs
    path: gen/srv
@@ -28,15 +28,15 @@ modules:
      builder: npm-ci
    requires:
     # Resources extracted from CAP configuration
-    - name: ordem-venda-auth
-    - name: ordem-venda-db
+    - name: documento-s4-auth
+    - name: documento-s4-db
    provides:
     - name: srv-api      # required by consumers of CAP services (e.g. approuter)
       properties:
         srv-url: ${default-url}
 
  # -------------------- SIDECAR MODULE ------------------------
- - name: ordem-venda-db-deployer
+ - name: documento-s4-db-deployer
  # ------------------------------------------------------------
    type: hdb
    path: gen/db  
@@ -44,25 +44,25 @@ modules:
      buildpack: nodejs_buildpack
    requires:
     # 'hana' and 'xsuaa' resources extracted from CAP configuration
-    - name: ordem-venda-auth
-    - name: ordem-venda-db
+    - name: documento-s4-auth
+    - name: documento-s4-db
 
 
 resources:
  # services extracted from CAP configuration
  # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
 # ------------------------------------------------------------
- - name: ordem-venda-auth
+ - name: documento-s4-auth
 # ------------------------------------------------------------
    type: org.cloudfoundry.managed-service
    parameters:
      service: xsuaa
      service-plan: application  
      config:
-       xsappname: ordem-venda-${space}    #  name + space dependency
+       xsappname: documento-s4-${space}    #  name + space dependency
        tenant-mode: dedicated
 # ------------------------------------------------------------
- - name: ordem-venda-db
+ - name: documento-s4-db
 # ------------------------------------------------------------
    type: com.sap.xs.hdi-container
    parameters:

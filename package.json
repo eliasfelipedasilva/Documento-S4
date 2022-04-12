@@ -1,7 +1,7 @@
 {
-  "name": "ordem-venda",
+  "name": "documento-s4",
   "version": "1.0.0",
-  "description": "Servico Ordem de vendas",
+  "description": "Servico Documento S4",
   "repository": "<Add your repository here>",
   "license": "UNLICENSED",
   "private": true,
