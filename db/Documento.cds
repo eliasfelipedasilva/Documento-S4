@@ -6,7 +6,7 @@ entity Documento : cuid , managed{
     pais            : Pais;
     numero_pedido   : Integer;
     etapa           : Association to one EtapaDocumento;
-    tipo_documento          : TipoDocumento;
+    tipo_processamento  : Association to one  TipoProcessamento;
     processamento_etapa : Composition of many   ProcessamentoEtapa on processamento_etapa.documento = $self;
     reprocessamento     : Integer;
     status              : Status default 'A';
@@ -20,7 +20,12 @@ entity ProcessamentoEtapa : cuid {
 entity EtapaDocumento  : cuid, managed {
     pais                : Pais;
     nome_etapa          : String;
+    tipo_documento      : String;
     ordem_execucao      : Integer
+}
+entity TipoProcessamento : cuid {
+    nome_tipo: String;
+    etapas_tipo : Association to many EtapaDocumento
 }
 
 
@@ -39,11 +44,6 @@ type Status : String enum {
 type StatusScheduler : String enum {
     ligado;
     desligado;
-}
-type TipoDocumento : String enum {
-    normal;
-    marketplace;
-    crossdocking;
 }
 
 
