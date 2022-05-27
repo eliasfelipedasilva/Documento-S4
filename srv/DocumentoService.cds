@@ -6,6 +6,8 @@ service DocumentoService {
    entity Documento as projection on my.Documento;
    entity EtapaDocumento as projection on my.EtapaDocumento;
    entity ProcessamentoEtapa as projection on my.ProcessamentoEtapa;
+   entity TipoProcessamento as projection on my.TipoProcessamento;
+   entity Etapa2Tipo as projection on my.Etapa2Tipo;
   //  entity ManagerOrdemVenda as projection on my.ManagerDocumento;
 
   @cds.redirection.target : false
