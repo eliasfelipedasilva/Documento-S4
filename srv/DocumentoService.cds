@@ -11,7 +11,7 @@ service DocumentoService {
   //  entity ManagerOrdemVenda as projection on my.ManagerDocumento;
 
   @cds.redirection.target : false
-    view qtdPorStatus as 
+    view qtdPorStatusDocumento as 
       select from my.Documento distinct {
         COUNT(
           *
@@ -20,6 +20,18 @@ service DocumentoService {
       }
       group by
         status;
+
+  @cds.redirection.target : false
+    view qtdPorStatusProcessamentoEtapa as 
+      select from my.ProcessamentoEtapa distinct {
+        COUNT(
+          *
+        )as qtdPorStatus : Integer,
+        status,
+      }
+      group by
+        status;
+
 
     action IniciaSchedulerEtapa(
         ID: String,

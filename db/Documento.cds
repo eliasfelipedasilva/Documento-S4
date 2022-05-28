@@ -7,20 +7,22 @@ entity Documento : cuid , managed{
     numero_pedido   : Integer;
     tipo  : Association to one  TipoProcessamento;
     processamento_etapa : Composition of many   ProcessamentoEtapa on processamento_etapa.documento = $self;
-    reprocessamento     : Integer;
     status              : Status default 'A';
 }
-entity ProcessamentoEtapa : cuid {
+entity ProcessamentoEtapa : cuid ,managed{
     documento               : Association to Documento;
     numero_retorno      : Integer;
-    status: Status default 'A';
+    status: Status default 'N';
     etapa               : Association to one EtapaDocumento;
+    reprocessamento     : Integer;
+    ordem_execucao      : Integer;
 }
 entity EtapaDocumento  : cuid, managed {
     pais                : Pais;
     nome_etapa          : String;
-    tipo_documento      : String;
     ordem_execucao      : Integer;
+    etapa_final         : Boolean default false;
+    reprocessamento_limite     : Integer;
     etapa2tipo : Association to many Etapa2Tipo on etapa2tipo.etapa = $self;
 }
 entity TipoProcessamento : cuid {
@@ -40,6 +42,7 @@ type Pais : String enum {
     AR
 }
 type Status : String enum {
+    N;
     A;
     P;
     E;

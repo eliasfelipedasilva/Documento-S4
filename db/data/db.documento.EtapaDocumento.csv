@@ -1,5 +1,5 @@
-ID,pais,nome_etapa,ordem_execucao,createdAt,createdBy,modifiedAt,modifiedBy
-1abafd34-0c3a-4211-9694-2cc77c0dd7ca,BR,CriarCliente,1,2022-03-21T20:54:44.879Z,ELias,2022-03-21T20:54:44.879Z,ELias
-asdffd34-0c3a-4211-9694-2cc77c0dd7ca,BR,CriarOrdem,2,2022-03-21T20:54:44.879Z,ELias,2022-03-21T20:54:44.879Z,ELias
-12345d34-0c3a-4211-9694-2cc77c0dd7ca,BR,CriarContasReceber,3,2022-03-21T20:54:44.879Z,ELias,2022-03-21T20:54:44.879Z,ELias
-14567d34-0c3a-4211-9694-2cc77c0dd7ca,BR,RetornoOrdem,4,2022-03-21T20:54:44.879Z,ELias,2022-03-21T20:54:44.879Z,ELias
+ID,pais,nome_etapa,ordem_execucao,etapa_final,createdAt,createdBy,modifiedAt,modifiedBy
+1abafd34-0c3a-4211-9694-2cc77c0dd7ca,BR,CriarCliente,1,false,2022-03-21T20:54:44.879Z,ELias,2022-03-21T20:54:44.879Z,ELias
+asdffd34-0c3a-4211-9694-2cc77c0dd7ca,BR,CriarOrdem,2,false,2022-03-21T20:54:44.879Z,ELias,2022-03-21T20:54:44.879Z,ELias
+12345d34-0c3a-4211-9694-2cc77c0dd7ca,BR,CriarContasReceber,3,false,2022-03-21T20:54:44.879Z,ELias,2022-03-21T20:54:44.879Z,ELias
+14567d34-0c3a-4211-9694-2cc77c0dd7ca,BR,RetornoOrdem,4,true,2022-03-21T20:54:44.879Z,ELias,2022-03-21T20:54:44.879Z,ELias
